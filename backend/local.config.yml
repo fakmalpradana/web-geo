@@ -1,0 +1,98 @@
+server:
+    bind:
+        host: 0.0.0.0
+        port: 5000
+    url: http://localhost:5000
+    mimetype: application/json; charset=UTF-8
+    encoding: utf-8
+    gzip: false
+    languages:
+        - en-US
+    cors: true
+    pretty_print: true
+    limit: 10
+    map:
+        url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    ogc_schemas_location: /schemas.opengis.net
+
+logging:
+    level: DEBUG
+    logfile: /tmp/pygeoapi.log
+
+metadata:
+    identification:
+        title: Geospatial Web API
+        description: API for serving geospatial data (Features, 3D Models, Terrain)
+        keywords:
+            - geospatial
+            - 3d
+            - api
+        keywords_type: theme
+        terms_of_service: https://creativecommons.org/licenses/by/4.0/
+        url: http://localhost:5000
+    license:
+        name: CC-BY 4.0
+        url: https://creativecommons.org/licenses/by/4.0/
+    provider:
+        name: Antigravity
+        url: https://google.com
+    contact:
+        name: Antigravity
+        position: AI Assistant
+        address: Internet
+        city: Cloud
+        state: Cloud
+        zip: 00000
+        country: US
+        phone: +00 00 000 0000
+        fax: +00 00 000 0000
+        email: you@example.com
+        url: https://google.com
+        hours: 24/7
+        instructions: During hours of service.
+        role: pointOfContact
+
+resources:
+    obs:
+        type: collection
+        title: Sample Observations
+        description: Sample GeoJSON data
+        keywords:
+            - observations
+            - sample
+        links: []
+        extents:
+            spatial:
+                bbox: [-180, -90, 180, 90]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+            temporal:
+                begin: 2000-01-01
+                end: null
+        providers:
+            - type: feature
+              name: GeoJSON
+              data: backend/data/sample_data.geojson
+              id_field: name
+
+    # Serving static files (e.g. for GLB models or other assets)
+    # This is a simple way to expose the data directory
+    data:
+        type: collection
+        title: Data Files
+        description: Static data files (GLB, etc.)
+        keywords:
+            - data
+            - static
+        links: []
+        extents:
+            spatial:
+                bbox: [-180, -90, 180, 90]
+        providers:
+            - type: feature
+              name: GeoJSON
+              data: backend/data/sample_data.geojson # Placeholder, pygeoapi needs a provider. 
+              # For true static file serving, pygeoapi isn't a file server. 
+              # We typically use the web server (Nginx/Apache) or a specific process.
+              # However, for this demo, we can rely on the frontend build or a separate simple http server for static assets if pygeoapi is too complex for static.
+              # Let's keep 'obs' for OGC API Features.

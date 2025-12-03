@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sample Point 1",
+        "value": 10
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          107.60981,
+          -6.91474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sample Point 2",
+        "value": 20
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          107.61081,
+          -6.91574
+        ]
+      }
+    }
+  ]
+}
