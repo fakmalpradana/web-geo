@@ -1,4 +1,10 @@
 #!/bin/bash
+# Run this script from the project root directory
+
+# Initialize conda for shell interaction
+eval "$(conda shell.bash hook)"
+conda activate web-geo
+
 export PYGEOAPI_CONFIG=backend/local.config.yml
 export PYGEOAPI_OPENAPI=backend/local.openapi.yml
 
@@ -21,11 +27,11 @@ fi
 
 # Start static file server for data (background)
 echo "Starting static file server on http://localhost:5001"
-python3 -m http.server 5001 --directory backend/data &
+python3 backend/simple_cors_server.py 5001 backend/data &
 STATIC_PID=$!
 
 # Run the pygeoapi server
-echo "Starting pygeoapi on http://localhost:5000"
+echo "Starting pygeoapi on http://localhost:5002"
 pygeoapi serve
 
 # Kill static server when pygeoapi stops

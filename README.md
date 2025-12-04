@@ -24,12 +24,11 @@ A full-stack geospatial web application serving data via OGC API standards and v
 The backend serves the API and static data files.
 
 ```bash
-cd backend
 # Install dependencies
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 
-# Run the server (starts pygeoapi on :5000 and static server on :5001)
-./run_server.sh
+# Run the server from the project root
+./backend/run_server.sh
 ```
 
 Verify backend:

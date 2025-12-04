@@ -1,3 +1,0 @@
-pygeoapi
-gunicorn
-gevent
