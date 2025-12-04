@@ -52,7 +52,8 @@ const Map3D = () => {
       // 3. Add Terban Buildings (3D)
       map.current.addSource('terban-features', {
         type: 'geojson',
-        data: 'http://localhost:5001/terban_wgs84.geojson'
+        data: 'http://localhost:5001/terban_wgs84.geojson',
+        generateId: true // Ensure features have IDs for state
       });
 
       map.current.addLayer({
@@ -60,10 +61,83 @@ const Map3D = () => {
         type: 'fill-extrusion',
         source: 'terban-features',
         paint: {
-          'fill-extrusion-color': '#aaa',
+          'fill-extrusion-color': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            '#ff0000', // Highlight color (red)
+            '#aaa' // Default color
+          ],
           'fill-extrusion-height': ['get', 'H_max'],
           'fill-extrusion-base': 0,
           'fill-extrusion-opacity': 0.8
+        }
+      });
+
+      // Hover and Click Interactions
+      let hoveredStateId = null;
+
+      map.current.on('mousemove', 'terban-buildings', (e) => {
+        if (e.features.length > 0) {
+          if (hoveredStateId !== null) {
+            map.current.setFeatureState(
+              { source: 'terban-features', id: hoveredStateId },
+              { hover: false }
+            );
+          }
+          hoveredStateId = e.features[0].id;
+          map.current.setFeatureState(
+            { source: 'terban-features', id: hoveredStateId },
+            { hover: true }
+          );
+          map.current.getCanvas().style.cursor = 'pointer';
+        }
+      });
+
+      map.current.on('mouseleave', 'terban-buildings', () => {
+        if (hoveredStateId !== null) {
+          map.current.setFeatureState(
+            { source: 'terban-features', id: hoveredStateId },
+            { hover: false }
+          );
+        }
+        hoveredStateId = null;
+        map.current.getCanvas().style.cursor = '';
+      });
+
+      map.current.on('click', 'terban-buildings', (e) => {
+        if (e.features.length > 0) {
+          const feature = e.features[0];
+
+          // Fly to feature
+          // Calculate centroid or just use the click coordinate for simplicity, 
+          // or better, use the feature geometry to find center.
+          // Since it's a polygon, we can use the click lngLat or calculate center.
+          // Using click lngLat is smoother for user interaction.
+          map.current.flyTo({
+            center: e.lngLat,
+            zoom: 19,
+            pitch: 60,
+            essential: true
+          });
+
+          // Create Popup content
+          const properties = feature.properties;
+          let popupContent = '<div style="max-height: 200px; overflow-y: auto; font-family: sans-serif;">';
+          popupContent += '<h3 style="margin-top: 0; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Building Data</h3>';
+          popupContent += '<table style="width: 100%; border-collapse: collapse;">';
+
+          for (const key in properties) {
+            popupContent += `<tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 4px; font-weight: bold; color: #555;">${key}</td>
+              <td style="padding: 4px;">${properties[key]}</td>
+            </tr>`;
+          }
+          popupContent += '</table></div>';
+
+          new maplibregl.Popup({ offset: 25 })
+            .setLngLat(e.lngLat)
+            .setHTML(popupContent)
+            .addTo(map.current);
         }
       });
 
