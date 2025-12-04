@@ -13,7 +13,7 @@ const Map3D = () => {
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://demotiles.maplibre.org/style.json', // Basic style
+      style: 'https://tiles.openfreemap.org/styles/liberty', // OpenFreeMap style
       center: [110.3738, -7.7828], // Yogyakarta, Terban area
       zoom: 16,
       pitch: 60,
@@ -22,22 +22,6 @@ const Map3D = () => {
     });
 
     map.current.on('load', () => {
-      // 0. Add OSM Basemap
-      map.current.addSource('osm', {
-        type: 'raster',
-        tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-        tileSize: 256,
-        attribution: '&copy; OpenStreetMap Contributors',
-        maxzoom: 19
-      });
-
-      map.current.addLayer({
-        id: 'osm-layer',
-        type: 'raster',
-        source: 'osm',
-        paint: {}
-      }, 'background'); // Add before other layers if possible, or just add first
-
       // 1. Add Terrain
       map.current.addSource('terrain', {
         type: 'raster-dem',
@@ -46,10 +30,7 @@ const Map3D = () => {
       });
       map.current.setTerrain({ source: 'terrain', exaggeration: 1.5 });
 
-      // 2. Add OGC API Features Layer (GeoJSON) - Keeping this as example or removing if not needed? 
-      // User only mentioned terban_wgs84.geojson. I will keep it for now but maybe comment it out if it errors.
-      // Actually, let's keep it but focus on the requested changes.
-
+      // 2. Add OGC API Features Layer (GeoJSON)
       map.current.addSource('ogc-features', {
         type: 'geojson',
         data: 'http://localhost:5002/collections/obs/items?f=json'
