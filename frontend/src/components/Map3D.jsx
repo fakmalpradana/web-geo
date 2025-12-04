@@ -7,6 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 const Map3D = () => {
   const mapContainer = useRef(null);
   const map = useRef(null);
+  const [showOSMBuildings, setShowOSMBuildings] = React.useState(true);
 
   useEffect(() => {
     if (map.current) return;
@@ -163,9 +164,62 @@ const Map3D = () => {
 
   }, []);
 
+  // Effect to toggle OSM buildings
+  useEffect(() => {
+    if (!map.current) return;
+
+    const toggleBuildings = () => {
+      const style = map.current.getStyle();
+      if (!style || !style.layers) return;
+
+      style.layers.forEach(layer => {
+        if (layer.id.includes('building') && layer.id !== 'terban-buildings') {
+          map.current.setLayoutProperty(
+            layer.id,
+            'visibility',
+            showOSMBuildings ? 'visible' : 'none'
+          );
+        }
+      });
+    };
+
+    // Check if map is loaded, if not wait for load event
+    if (map.current.loaded()) {
+      toggleBuildings();
+    } else {
+      map.current.on('load', toggleBuildings);
+    }
+
+    return () => {
+      if (map.current) {
+        map.current.off('load', toggleBuildings);
+      }
+    };
+
+  }, [showOSMBuildings]);
+
   return (
     <div className="map-wrap">
       <div ref={mapContainer} className="map" />
+      <div className="controls" style={{
+        position: 'absolute',
+        top: '10px',
+        left: '10px',
+        zIndex: 1,
+        background: 'white',
+        padding: '10px',
+        borderRadius: '4px',
+        boxShadow: '0 0 10px rgba(0,0,0,0.1)'
+      }}>
+        <label>
+          <input
+            type="checkbox"
+            checked={showOSMBuildings}
+            onChange={(e) => setShowOSMBuildings(e.target.checked)}
+          />
+          Show OSM Buildings
+        </label>
+      </div>
     </div>
   );
 };
