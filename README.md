@@ -32,8 +32,13 @@ pip install -r backend/requirements.txt
 ```
 
 Verify backend:
-- OGC API: [http://localhost:5000](http://localhost:5000)
-- Sample Data: [http://localhost:5001/model.glb](http://localhost:5001/model.glb)
+- OGC API: [https://web-geo-backend-ghrycmhzeq-et.a.run.app](https://web-geo-backend-ghrycmhzeq-et.a.run.app)
+- Sample Data: 
+```
+curl -X 'GET' \
+  'https://web-geo-backend-ghrycmhzeq-et.a.run.app/collections/terban/items?f=json&lang=en-US&limit=10&additionalProp1=%7B%7D&skipGeometry=false&offset=0' \
+  -H 'accept: application/geo+json'
+```
 
 ### 2. Frontend
 
@@ -48,7 +53,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) to view the application.
+Open [https://web-geo-frontend-ghrycmhzeq-et.a.run.app](https://web-geo-frontend-ghrycmhzeq-et.a.run.app) to view the application.
 
 ## Usage
 
@@ -62,3 +67,7 @@ Open [http://localhost:5173](http://localhost:5173) to view the application.
 
 - **Data**: Place new GLB models in `backend/data/` and update `Map3D.jsx` to point to them.
 - **API**: Edit `backend/local.config.yml` to add new collections.
+
+Deployment Complete!
+Backend: https://web-geo-backend-ghrycmhzeq-et.a.run.app
+Frontend: https://web-geo-frontend-ghrycmhzeq-et.a.run.app

@@ -271,6 +271,436 @@ paths:
       summary: Collections
       tags:
       - server
+  /collections/bidang_tanah:
+    get:
+      description: High precision polygon boundaries for land parcels
+      operationId: describeBidang_tanahCollection
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Collection
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get Land Parcels (Bidang Tanah) metadata
+      tags:
+      - bidang_tanah
+  /collections/bidang_tanah/items:
+    get:
+      description: High precision polygon boundaries for land parcels
+      operationId: getBidang_tanahFeatures
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      - $ref: '#/components/parameters/bbox'
+      - description: The optional limit parameter limits the number of items that
+          are presented in the response document (maximum=10, default=10).
+        explode: false
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 10
+          minimum: 1
+          type: integer
+        style: form
+      - $ref: '#/components/parameters/crs'
+      - $ref: '#/components/parameters/bbox-crs'
+      - &id001
+        description: The properties that should be included for each feature. The
+          parameter value is a comma-separated list of property names.
+        explode: false
+        in: query
+        name: properties
+        required: false
+        schema:
+          items:
+            enum:
+            - NIB
+            - HAK
+            - SURAT_UKUR
+            - KELURAHAN
+            - PEMILIK
+            - KW
+            - LUAS_GEO
+            - harga m
+            - SU
+            - OBJECTID
+            - fid_1
+            - ID
+            - WILAYAHID
+            - WILAYAHIND
+            - KODEWILAYA
+            - KECAMATAN
+            - TIPEHAK
+            - TIPEPRODUK
+            - TAHUN
+            - LUASTERTUL
+            - LUASPETA
+            - SUMBERGEOM
+            - ALATUKUR
+            - METODUKUR
+            - NOMORHAK
+            - LUAS AKHIR
+            - OBJECTID_1
+            - PENGGUNAAN
+            - LUAS_AKHIR
+            - layer
+            - path
+            type: string
+          type: array
+        style: form
+      - $ref: '#/components/parameters/vendorSpecificParameters'
+      - $ref: '#/components/parameters/skipGeometry'
+      - $ref: https://raw.githubusercontent.com/opengeospatial/ogcapi-records/master/core/openapi/parameters/sortby.yaml
+      - $ref: '#/components/parameters/offset'
+      - explode: false
+        in: query
+        name: NIB
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: HAK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SURAT_UKUR
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KELURAHAN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: PEMILIK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KW
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LUAS_GEO
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: harga m
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SU
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: OBJECTID
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: fid_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: ID
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WILAYAHID
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WILAYAHIND
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODEWILAYA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KECAMATAN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TIPEHAK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TIPEPRODUK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TAHUN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LUASTERTUL
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LUASPETA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SUMBERGEOM
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: ALATUKUR
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: METODUKUR
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: NOMORHAK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LUAS AKHIR
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: OBJECTID_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: PENGGUNAAN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LUAS_AKHIR
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: layer
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: path
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Features
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get Land Parcels (Bidang Tanah) items
+      tags:
+      - bidang_tanah
+    options:
+      description: High precision polygon boundaries for land parcels
+      operationId: optionsBidang_tanahFeatures
+      responses:
+        '200':
+          description: options response
+      summary: Options for Land Parcels (Bidang Tanah) items
+      tags:
+      - bidang_tanah
+    post:
+      description: High precision polygon boundaries for land parcels
+      operationId: getCQL2Bidang_tanahFeatures
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: https://schemas.opengis.net/cql2/1.0/cql2.json
+        description: Get items with CQL2
+        required: true
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Features
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get Land Parcels (Bidang Tanah) items with CQL2
+      tags:
+      - bidang_tanah
+  /collections/bidang_tanah/items/{featureId}:
+    get:
+      description: High precision polygon boundaries for land parcels
+      operationId: getBidang_tanahFeature
+      parameters:
+      - $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/parameters/featureId
+      - $ref: '#/components/parameters/crs'
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Feature
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get Land Parcels (Bidang Tanah) item by id
+      tags:
+      - bidang_tanah
+    options:
+      description: High precision polygon boundaries for land parcels
+      operationId: optionsBidang_tanahFeature
+      parameters:
+      - $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/parameters/featureId
+      responses:
+        '200':
+          description: options response
+      summary: Options for Land Parcels (Bidang Tanah) item by id
+      tags:
+      - bidang_tanah
+  /collections/bidang_tanah/queryables:
+    get:
+      description: High precision polygon boundaries for land parcels
+      operationId: getBidang_tanahQueryables
+      parameters:
+      - *id001
+      - $ref: '#/components/parameters/f'
+      - &id003
+        description: The profile to be applied to a given request
+        explode: false
+        in: query
+        name: profile
+        required: false
+        schema:
+          enum:
+          - actual-domain
+          - valid-domain
+          type: string
+        style: form
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Queryables'
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get Land Parcels (Bidang Tanah) queryables
+      tags:
+      - bidang_tanah
+  /collections/bidang_tanah/schema:
+    get:
+      description: High precision polygon boundaries for land parcels
+      operationId: getBidang_tanahSchema
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Queryables'
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get Land Parcels (Bidang Tanah) schema
+      tags:
+      - bidang_tanah
   /collections/data:
     get:
       description: Static data files (GLB, etc.)
@@ -312,7 +742,7 @@ paths:
         style: form
       - $ref: '#/components/parameters/crs'
       - $ref: '#/components/parameters/bbox-crs'
-      - &id001
+      - &id002
         description: The properties that should be included for each feature. The
           parameter value is a comma-separated list of property names.
         explode: false
@@ -423,20 +853,9 @@ paths:
       description: Static data files (GLB, etc.)
       operationId: getDataQueryables
       parameters:
-      - *id001
+      - *id002
       - $ref: '#/components/parameters/f'
-      - &id003
-        description: The profile to be applied to a given request
-        explode: false
-        in: query
-        name: profile
-        required: false
-        schema:
-          enum:
-          - actual-domain
-          - valid-domain
-          type: string
-        style: form
+      - *id003
       - $ref: '#/components/parameters/lang'
       responses:
         '200':
@@ -510,7 +929,7 @@ paths:
         style: form
       - $ref: '#/components/parameters/crs'
       - $ref: '#/components/parameters/bbox-crs'
-      - &id002
+      - &id004
         description: The properties that should be included for each feature. The
           parameter value is a comma-separated list of property names.
         explode: false
@@ -621,7 +1040,7 @@ paths:
       description: Sample GeoJSON data
       operationId: getObsQueryables
       parameters:
-      - *id002
+      - *id004
       - $ref: '#/components/parameters/f'
       - *id003
       - $ref: '#/components/parameters/lang'
@@ -656,6 +1075,1540 @@ paths:
       summary: Get Sample Observations schema
       tags:
       - obs
+  /collections/pbb:
+    get:
+      description: Tax-related polygon data for land and buildings
+      operationId: describePbbCollection
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Collection
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get PBB (Land & Building Tax) metadata
+      tags:
+      - pbb
+  /collections/pbb/items:
+    get:
+      description: Tax-related polygon data for land and buildings
+      operationId: getPbbFeatures
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      - $ref: '#/components/parameters/bbox'
+      - description: The optional limit parameter limits the number of items that
+          are presented in the response document (maximum=10, default=10).
+        explode: false
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 10
+          minimum: 1
+          type: integer
+        style: form
+      - $ref: '#/components/parameters/crs'
+      - $ref: '#/components/parameters/bbox-crs'
+      - &id005
+        description: The properties that should be included for each feature. The
+          parameter value is a comma-separated list of property names.
+        explode: false
+        in: query
+        name: properties
+        required: false
+        schema:
+          items:
+            enum:
+            - fid
+            - ALAMAT_OP
+            - F1993
+            - F1994
+            - F1995
+            - F1996
+            - F1997
+            - F1998
+            - F1999
+            - F2000
+            - F2001
+            - F2002
+            - F2003
+            - F2004
+            - F2005
+            - F2006
+            - F2007
+            - F2008
+            - F2009
+            - F2010
+            - F2011
+            - F2012
+            - F2013
+            - F2014
+            - F2015
+            - F2016
+            - F2017
+            - F2018
+            - F2019
+            - F2020
+            - F2021
+            - F2022
+            - F2023
+            - F2024
+            - F2025
+            - GOOGLE_MAP
+            - IDKEL_ZNT
+            - INTG_SPPT
+            - KAV_NO_OP
+            - KD_ZNT
+            - KECAMATAN
+            - KELURAHAN
+            - NJOP_BGN
+            - NJOP_BUMI
+            - NJOP_TKP
+            - NJOP_TOTAL
+            - NOP
+            - OBJECTID
+            - PBB_BAYAR
+            - PBB_HUTANG
+            - PENGURANG
+            - PERBANDING
+            - PERBANDI_1
+            - PERBANDI_2
+            - RT
+            - RW
+            - SEARCH
+            - SIA_KET_NO
+            - Shape_Area
+            - Shape_Leng
+            - TARIF_SPPT
+            - WILAYAH
+            - layer
+            - path
+            type: string
+          type: array
+        style: form
+      - $ref: '#/components/parameters/vendorSpecificParameters'
+      - $ref: '#/components/parameters/skipGeometry'
+      - $ref: https://raw.githubusercontent.com/opengeospatial/ogcapi-records/master/core/openapi/parameters/sortby.yaml
+      - $ref: '#/components/parameters/offset'
+      - explode: false
+        in: query
+        name: fid
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: ALAMAT_OP
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: F1993
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F1994
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F1995
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F1996
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F1997
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F1998
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F1999
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2000
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2001
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2002
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2003
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2004
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2005
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2006
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2007
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2008
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2009
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2010
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2011
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2012
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2013
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2014
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2015
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2016
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2017
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2018
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2019
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2020
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2021
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2022
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2023
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2024
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: F2025
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: GOOGLE_MAP
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: IDKEL_ZNT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: INTG_SPPT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KAV_NO_OP
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KD_ZNT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KECAMATAN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KELURAHAN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: NJOP_BGN
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: NJOP_BUMI
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: NJOP_TKP
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: NJOP_TOTAL
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: NOP
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: OBJECTID
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: query
+        name: PBB_BAYAR
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: PBB_HUTANG
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: PENGURANG
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: PERBANDING
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: PERBANDI_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: PERBANDI_2
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: RT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: RW
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SEARCH
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SIA_KET_NO
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: Shape_Area
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: Shape_Leng
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: TARIF_SPPT
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: WILAYAH
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: layer
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: path
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Features
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get PBB (Land & Building Tax) items
+      tags:
+      - pbb
+    options:
+      description: Tax-related polygon data for land and buildings
+      operationId: optionsPbbFeatures
+      responses:
+        '200':
+          description: options response
+      summary: Options for PBB (Land & Building Tax) items
+      tags:
+      - pbb
+    post:
+      description: Tax-related polygon data for land and buildings
+      operationId: getCQL2PbbFeatures
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: https://schemas.opengis.net/cql2/1.0/cql2.json
+        description: Get items with CQL2
+        required: true
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Features
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get PBB (Land & Building Tax) items with CQL2
+      tags:
+      - pbb
+  /collections/pbb/items/{featureId}:
+    get:
+      description: Tax-related polygon data for land and buildings
+      operationId: getPbbFeature
+      parameters:
+      - $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/parameters/featureId
+      - $ref: '#/components/parameters/crs'
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Feature
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get PBB (Land & Building Tax) item by id
+      tags:
+      - pbb
+    options:
+      description: Tax-related polygon data for land and buildings
+      operationId: optionsPbbFeature
+      parameters:
+      - $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/parameters/featureId
+      responses:
+        '200':
+          description: options response
+      summary: Options for PBB (Land & Building Tax) item by id
+      tags:
+      - pbb
+  /collections/pbb/queryables:
+    get:
+      description: Tax-related polygon data for land and buildings
+      operationId: getPbbQueryables
+      parameters:
+      - *id005
+      - $ref: '#/components/parameters/f'
+      - *id003
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Queryables'
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get PBB (Land & Building Tax) queryables
+      tags:
+      - pbb
+  /collections/pbb/schema:
+    get:
+      description: Tax-related polygon data for land and buildings
+      operationId: getPbbSchema
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Queryables'
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get PBB (Land & Building Tax) schema
+      tags:
+      - pbb
+  /collections/rdtr:
+    get:
+      description: Zoning polygons for spatial planning (residential, commercial,
+        etc.)
+      operationId: describeRdtrCollection
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Collection
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get RDTR (Detailed Spatial Plan) metadata
+      tags:
+      - rdtr
+  /collections/rdtr/items:
+    get:
+      description: Zoning polygons for spatial planning (residential, commercial,
+        etc.)
+      operationId: getRdtrFeatures
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      - $ref: '#/components/parameters/bbox'
+      - description: The optional limit parameter limits the number of items that
+          are presented in the response document (maximum=10, default=10).
+        explode: false
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 10
+          minimum: 1
+          type: integer
+        style: form
+      - $ref: '#/components/parameters/crs'
+      - $ref: '#/components/parameters/bbox-crs'
+      - &id006
+        description: The properties that should be included for each feature. The
+          parameter value is a comma-separated list of property names.
+        explode: false
+        in: query
+        name: properties
+        required: false
+        schema:
+          items:
+            enum:
+            - BIDANG
+            - BST
+            - CAGBUD
+            - CREATED_DA
+            - CREATED_US
+            - GLOBALID
+            - HANKAM
+            - IZN
+            - JNSRPR
+            - KATMSLH
+            - KDB
+            - KDH
+            - KETBIDANG
+            - KETKAKDIS
+            - KETSUBKEL
+            - KKARST
+            - KKOP_1
+            - KLB
+            - KLB_1
+            - KLB_FINAL
+            - KODBLK
+            - KODEFIKASI
+            - KODEWP
+            - KODSBL
+            - KODSWP
+            - KODSZN
+            - KODSZNTEXT
+            - KODSZN_1
+            - KODUNK
+            - KODUNK1
+            - KODUNK2
+            - KODZON
+            - KODZON_1
+            - KRB_03
+            - KSMPDN
+            - KTB
+            - LAMPIRAN
+            - LAST_EDITE
+            - LAST_EDI_1
+            - LP2B_2
+            - LUASHA
+            - MGRSAT
+            - NAMOBJ
+            - NAMSZN
+            - NAMSZN_1
+            - NAMZON
+            - NAMZON_1
+            - OBJECTID
+            - OPERATOR
+            - PTBGMB
+            - PUSLIT
+            - QC
+            - RDBUMI
+            - REMARK
+            - RESAIR
+            - SHAPE.AREA
+            - SHAPE.LEN
+            - STATUS
+            - STATUS_OPE
+            - STATU_PELA
+            - SUBKEL
+            - TBS
+            - TBT
+            - TEB_05
+            - TIKETID
+            - TOD_04
+            - TPZ_00
+            - VERIFSUBKE
+            - VERIF_BIDA
+            - VERIF_KADI
+            - WADMKC
+            - WADMKD
+            - WADMKK
+            - WADMPR
+            - SHAPE_1
+            - idd
+            - SHAPE_AREA
+            - SHAPE_LEN
+            - ORIG_FID
+            - fid_1
+            - ID
+            - OBJECTID_2
+            - layer
+            - path
+            type: string
+          type: array
+        style: form
+      - $ref: '#/components/parameters/vendorSpecificParameters'
+      - $ref: '#/components/parameters/skipGeometry'
+      - $ref: https://raw.githubusercontent.com/opengeospatial/ogcapi-records/master/core/openapi/parameters/sortby.yaml
+      - $ref: '#/components/parameters/offset'
+      - explode: false
+        in: query
+        name: BIDANG
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: BST
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: CAGBUD
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: CREATED_DA
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: CREATED_US
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: GLOBALID
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: HANKAM
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: IZN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: JNSRPR
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: query
+        name: KATMSLH
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KDB
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KDH
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KETBIDANG
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KETKAKDIS
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KETSUBKEL
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KKARST
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KKOP_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KLB
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KLB_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KLB_FINAL
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODBLK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODEFIKASI
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODEWP
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODSBL
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODSWP
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODSZN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODSZNTEXT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODSZN_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODUNK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODUNK1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODUNK2
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KODZON
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: query
+        name: KODZON_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KRB_03
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KSMPDN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KTB
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LAMPIRAN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LAST_EDITE
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LAST_EDI_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LP2B_2
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: LUASHA
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: MGRSAT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: NAMOBJ
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: NAMSZN
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: NAMSZN_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: NAMZON
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: NAMZON_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: OBJECTID
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: OPERATOR
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: PTBGMB
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: PUSLIT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: QC
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: RDBUMI
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: REMARK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: RESAIR
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SHAPE.AREA
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: SHAPE.LEN
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: STATUS
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: STATUS_OPE
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: STATU_PELA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SUBKEL
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TBS
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TBT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TEB_05
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TIKETID
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TOD_04
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: TPZ_00
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: VERIFSUBKE
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: VERIF_BIDA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: VERIF_KADI
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WADMKC
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WADMKD
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WADMKK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WADMPR
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SHAPE_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: idd
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SHAPE_AREA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SHAPE_LEN
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: ORIG_FID
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: fid_1
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: ID
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: OBJECTID_2
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: layer
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: path
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Features
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get RDTR (Detailed Spatial Plan) items
+      tags:
+      - rdtr
+    options:
+      description: Zoning polygons for spatial planning (residential, commercial,
+        etc.)
+      operationId: optionsRdtrFeatures
+      responses:
+        '200':
+          description: options response
+      summary: Options for RDTR (Detailed Spatial Plan) items
+      tags:
+      - rdtr
+    post:
+      description: Zoning polygons for spatial planning (residential, commercial,
+        etc.)
+      operationId: getCQL2RdtrFeatures
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: https://schemas.opengis.net/cql2/1.0/cql2.json
+        description: Get items with CQL2
+        required: true
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Features
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get RDTR (Detailed Spatial Plan) items with CQL2
+      tags:
+      - rdtr
+  /collections/rdtr/items/{featureId}:
+    get:
+      description: Zoning polygons for spatial planning (residential, commercial,
+        etc.)
+      operationId: getRdtrFeature
+      parameters:
+      - $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/parameters/featureId
+      - $ref: '#/components/parameters/crs'
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Feature
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get RDTR (Detailed Spatial Plan) item by id
+      tags:
+      - rdtr
+    options:
+      description: Zoning polygons for spatial planning (residential, commercial,
+        etc.)
+      operationId: optionsRdtrFeature
+      parameters:
+      - $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/parameters/featureId
+      responses:
+        '200':
+          description: options response
+      summary: Options for RDTR (Detailed Spatial Plan) item by id
+      tags:
+      - rdtr
+  /collections/rdtr/queryables:
+    get:
+      description: Zoning polygons for spatial planning (residential, commercial,
+        etc.)
+      operationId: getRdtrQueryables
+      parameters:
+      - *id006
+      - $ref: '#/components/parameters/f'
+      - *id003
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Queryables'
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get RDTR (Detailed Spatial Plan) queryables
+      tags:
+      - rdtr
+  /collections/rdtr/schema:
+    get:
+      description: Zoning polygons for spatial planning (residential, commercial,
+        etc.)
+      operationId: getRdtrSchema
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Queryables'
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get RDTR (Detailed Spatial Plan) schema
+      tags:
+      - rdtr
   /collections/terban:
     get:
       description: Buildings in Terban, Yogyakarta with height data
@@ -697,7 +2650,7 @@ paths:
         style: form
       - $ref: '#/components/parameters/crs'
       - $ref: '#/components/parameters/bbox-crs'
-      - &id004
+      - &id007
         description: The properties that should be included for each feature. The
           parameter value is a comma-separated list of property names.
         explode: false
@@ -880,7 +2833,7 @@ paths:
       description: Buildings in Terban, Yogyakarta with height data
       operationId: getTerbanQueryables
       parameters:
-      - *id004
+      - *id007
       - $ref: '#/components/parameters/f'
       - *id003
       - $ref: '#/components/parameters/lang'
@@ -915,6 +2868,361 @@ paths:
       summary: Get Terban Buildings schema
       tags:
       - terban
+  /collections/znt:
+    get:
+      description: Polygons representing land value ranges and zones
+      operationId: describeZntCollection
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Collection
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get ZNT (Land Value Zone) metadata
+      tags:
+      - znt
+  /collections/znt/items:
+    get:
+      description: Polygons representing land value ranges and zones
+      operationId: getZntFeatures
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      - $ref: '#/components/parameters/bbox'
+      - description: The optional limit parameter limits the number of items that
+          are presented in the response document (maximum=10, default=10).
+        explode: false
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 10
+          minimum: 1
+          type: integer
+        style: form
+      - $ref: '#/components/parameters/crs'
+      - $ref: '#/components/parameters/bbox-crs'
+      - &id008
+        description: The properties that should be included for each feature. The
+          parameter value is a comma-separated list of property names.
+        explode: false
+        in: query
+        name: properties
+        required: false
+        schema:
+          items:
+            enum:
+            - FID_KELURA
+            - FCODE
+            - KDCPUM
+            - KDEPUM
+            - KDPKAB
+            - WADMKC
+            - WADMKD
+            - WADMKK
+            - SHAPE_Leng
+            - SHAPE_Area
+            - FID_ZNTkel
+            - PSTDDEV
+            - STDDEV
+            - MEAN
+            - MIN_
+            - MAX_
+            - NOZONE
+            - RPBULAT
+            - WILAYAH
+            - Shape_Le_1
+            - Shape_Ar_1
+            - layer
+            - path
+            type: string
+          type: array
+        style: form
+      - $ref: '#/components/parameters/vendorSpecificParameters'
+      - $ref: '#/components/parameters/skipGeometry'
+      - $ref: https://raw.githubusercontent.com/opengeospatial/ogcapi-records/master/core/openapi/parameters/sortby.yaml
+      - $ref: '#/components/parameters/offset'
+      - explode: false
+        in: query
+        name: FID_KELURA
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: query
+        name: FCODE
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KDCPUM
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KDEPUM
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: KDPKAB
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WADMKC
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WADMKD
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WADMKK
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: SHAPE_Leng
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: SHAPE_Area
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: FID_ZNTkel
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: query
+        name: PSTDDEV
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: STDDEV
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: MEAN
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: MIN_
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: query
+        name: MAX_
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: query
+        name: NOZONE
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: query
+        name: RPBULAT
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: WILAYAH
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: Shape_Le_1
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: Shape_Ar_1
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: query
+        name: layer
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: query
+        name: path
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Features
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get ZNT (Land Value Zone) items
+      tags:
+      - znt
+    options:
+      description: Polygons representing land value ranges and zones
+      operationId: optionsZntFeatures
+      responses:
+        '200':
+          description: options response
+      summary: Options for ZNT (Land Value Zone) items
+      tags:
+      - znt
+    post:
+      description: Polygons representing land value ranges and zones
+      operationId: getCQL2ZntFeatures
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: https://schemas.opengis.net/cql2/1.0/cql2.json
+        description: Get items with CQL2
+        required: true
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Features
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get ZNT (Land Value Zone) items with CQL2
+      tags:
+      - znt
+  /collections/znt/items/{featureId}:
+    get:
+      description: Polygons representing land value ranges and zones
+      operationId: getZntFeature
+      parameters:
+      - $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/parameters/featureId
+      - $ref: '#/components/parameters/crs'
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/Feature
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get ZNT (Land Value Zone) item by id
+      tags:
+      - znt
+    options:
+      description: Polygons representing land value ranges and zones
+      operationId: optionsZntFeature
+      parameters:
+      - $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/parameters/featureId
+      responses:
+        '200':
+          description: options response
+      summary: Options for ZNT (Land Value Zone) item by id
+      tags:
+      - znt
+  /collections/znt/queryables:
+    get:
+      description: Polygons representing land value ranges and zones
+      operationId: getZntQueryables
+      parameters:
+      - *id008
+      - $ref: '#/components/parameters/f'
+      - *id003
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Queryables'
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get ZNT (Land Value Zone) queryables
+      tags:
+      - znt
+  /collections/znt/schema:
+    get:
+      description: Polygons representing land value ranges and zones
+      operationId: getZntSchema
+      parameters:
+      - $ref: '#/components/parameters/f'
+      - $ref: '#/components/parameters/lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Queryables'
+        '400':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/InvalidParameter
+        '404':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/NotFound
+        '500':
+          $ref: http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/ogcapi-features-1.yaml#/components/responses/ServerError
+      summary: Get ZNT (Land Value Zone) schema
+      tags:
+      - znt
   /conformance:
     get:
       description: API conformance definition
@@ -951,7 +3259,7 @@ paths:
       description: Cancel / delete job
       operationId: deleteJob
       parameters:
-      - &id005
+      - &id009
         description: job identifier
         in: path
         name: jobId
@@ -972,7 +3280,7 @@ paths:
       description: Retrieve job details
       operationId: getJob
       parameters:
-      - *id005
+      - *id009
       - $ref: '#/components/parameters/f'
       responses:
         '200':
@@ -989,7 +3297,7 @@ paths:
       description: Retrieve job results
       operationId: getJobResults
       parameters:
-      - *id005
+      - *id009
       - $ref: '#/components/parameters/f'
       responses:
         '200':
@@ -1043,6 +3351,14 @@ tags:
   name: obs
 - description: Buildings in Terban, Yogyakarta with height data
   name: terban
+- description: High precision polygon boundaries for land parcels
+  name: bidang_tanah
+- description: Zoning polygons for spatial planning (residential, commercial, etc.)
+  name: rdtr
+- description: Tax-related polygon data for land and buildings
+  name: pbb
+- description: Polygons representing land value ranges and zones
+  name: znt
 - description: Static data files (GLB, etc.)
   name: data
 - name: coverages

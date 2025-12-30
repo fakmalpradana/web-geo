@@ -10,11 +10,11 @@ server:
         - en-US
     cors: true
     pretty_print: true
-    limit: 10
+    limit: 5000
     map:
         url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-    ogc_schemas_location: http://schemas.opengis.net
+    ogc_schemas_location: https://schemas.opengis.net
 
 logging:
     level: DEBUG
@@ -92,6 +92,82 @@ resources:
               name: GeoJSON
               data: backend/data/terban_wgs84.geojson
               id_field: osm_id
+
+    bidang_tanah:
+        type: collection
+        title: Land Parcels (Bidang Tanah)
+        description: High precision polygon boundaries for land parcels
+        keywords:
+            - land parcels
+            - cadastral
+            - boundaries
+        links: []
+        extents:
+            spatial:
+                bbox: [110.3, -7.8, 110.4, -7.7]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: feature
+              name: GeoJSON
+              data: backend/2D/bidang_tanah.geojson
+              id_field: fid
+
+    rdtr:
+        type: collection
+        title: RDTR (Detailed Spatial Plan)
+        description: Zoning polygons for spatial planning (residential, commercial, etc.)
+        keywords:
+            - zoning
+            - spatial plan
+            - rdtr
+        links: []
+        extents:
+            spatial:
+                bbox: [110.3, -7.8, 110.4, -7.7]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: feature
+              name: GeoJSON
+              data: backend/2D/rdtr.geojson
+              id_field: fid
+
+    pbb:
+        type: collection
+        title: PBB (Land & Building Tax)
+        description: Tax-related polygon data for land and buildings
+        keywords:
+            - tax
+            - pbb
+            - land tax
+        links: []
+        extents:
+            spatial:
+                bbox: [110.3, -7.8, 110.4, -7.7]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: feature
+              name: GeoJSON
+              data: backend/2D/pbb.geojson
+              id_field: fid
+
+    znt:
+        type: collection
+        title: ZNT (Land Value Zone)
+        description: Polygons representing land value ranges and zones
+        keywords:
+            - land value
+            - znt
+            - valuation
+        links: []
+        extents:
+            spatial:
+                bbox: [110.3, -7.8, 110.4, -7.7]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: feature
+              name: GeoJSON
+              data: backend/2D/znt.geojson
+              id_field: fid
 
     # Serving static files (e.g. for GLB models or other assets)
     # This is a simple way to expose the data directory
